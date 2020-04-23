@@ -1,7 +1,7 @@
 paper.install(window);
 window.onload = function () {
 
-    var toolbox = document.getElementById("toolbox");
+    var toolbox = document.getElementById('toolbox');
 
     var theme = {
         "colour":"#A5745B",
@@ -46,11 +46,22 @@ window.onload = function () {
 
     demoWorkspace.addChangeListener(runCode);
 
+    var workspaceBlocks;
+    xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            workspaceBlocks = this;
+
+        }
+    };
+    xmlhttp.open("GET", "xml/workspaceblocks.xml" , true);
+    xmlhttp.send();
+    console.log(document.getElementById('workspaceBlocks'));
     Blockly.Xml.domToWorkspace(document.getElementById('workspaceBlocks'), demoWorkspace);
 
 
 
-    document.getElementById('showcode').onclick = function (ev) { showCode() };
+    // document.getElementById('showcode').onclick = function (ev) { showCode() };
 
     function showCode() {
         // Generate JavaScript code and display it.
@@ -84,11 +95,9 @@ window.onload = function () {
 
 
             paper.view.draw();
-            document.getElementById('error').innerHTML = 'no error';
 
         }
         catch (e) {
-            document.getElementById('error').innerHTML = e;
             // alert(e);
         }
     }
