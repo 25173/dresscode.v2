@@ -31,18 +31,18 @@
 
     <button id="btndownload">Download</button>
 
-
 </p>
 
 <div class="inline">
+    <!--the image for the canvas-->
+    <img src="img/t-shirt.png" id="clothes" style="display: none" alt="kleding">
     <!--dit is het div waar de blockjes komen-->
     <div id="blocklyDiv"></div>
-
     <!--dit is waar de canvas is-->
     <canvas id="myCanvas"></canvas>
 </div>
 
-<!--dit kan je negeren-->
+<!--dit kan je negeren het is voor blocky de menu lijst-->
 <xml xmlns="https://developers.google.com/blockly/xml" id="toolbox" style="display: none">
     <category name="Tekst" colour="#5ba58c">
         <block type="text">
@@ -166,7 +166,7 @@
     <category name="Variables" colour="#a55b80" custom="VARIABLE"></category>
 </xml>
 
-<!--dit kan je negeren-->
+<!--dit kan je negeren, het is de standaard code voor blocky die wat tekent-->
 <xml xmlns="https://developers.google.com/blockly/xml" id="workspaceBlocks" style="display: none" >
     <block type="variable_block" id="7$jOSG.Si0kL=$jq^QW}" x="50" y="20">
         <value name="NAME">

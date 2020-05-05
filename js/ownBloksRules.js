@@ -15,7 +15,6 @@ Blockly.JavaScript['variable_block'] = function (block) {
     return code
 };
 
-//todo make it correct
 Blockly.JavaScript['vorm'] = function (block) {
     var dropdown_shape = block.getFieldValue('shape');
     var value_name = Blockly.JavaScript.valueToCode(block, 'NAME', Blockly.JavaScript.ORDER_ATOMIC);

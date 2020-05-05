@@ -89,9 +89,12 @@ window.onload = function () {
             // Get a reference to the canvas object
 
             var backgound_canvas = new Path.Rectangle(new Point(0, 0), new Point(canvas.clientWidth + 10, canvas.clientHeight + 10));
-            backgound_canvas.fillColor = "rgb(225,225,225)";
+            backgound_canvas.fillColor = "rgb(255,255,255)";
 
             eval(code);  // = var path = new paper.Path();
+            var raster = new Raster('clothes');
+            raster.position = view.center;
+            raster.size = new Size(canvas.clientWidth + 1, canvas.clientHeight + 2);
 
 
             paper.view.draw();
@@ -112,14 +115,14 @@ window.onload = function () {
 
         var imgd = ctx.getImageData(0, 0, canvas.clientWidth * 2 + 10 , canvas.clientHeight * 2 + 20),
             pix = imgd.data,
-            newColor = {r:225,g:225,b:225, a:225};
+            newColor = {r:0,g:0,b:0, a:0};
 
         for (var i = 0, n = pix.length; i <n; i += 1) {
             var r = pix[i],
                 g = pix[i+1],
                 b = pix[i+2];
 
-            if(r === 0&& g === 0 && b === 10){
+            if(r === 255&& g === 255 && b === 254 ){
                 // Change the white to the new color.
 
                 pix[i] = newColor.r;
