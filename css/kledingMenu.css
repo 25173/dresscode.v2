@@ -1,0 +1,18 @@
+.kleding_form{
+    height: 20%;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.kleding_form input[type = radio]{
+    display: none;
+}
+
+.kleding_form label img{
+    width: 50%;
+}
+
+.kleding_form input[type = radio]:checked+label img{
+    background: #788fe6;
+}
