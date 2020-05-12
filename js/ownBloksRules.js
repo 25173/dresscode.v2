@@ -1,3 +1,5 @@
+
+
 Blockly.JavaScript['variable_block'] = function (block) {
     var value_sk = Blockly.JavaScript.valueToCode(block, 'NAME', Blockly.JavaScript.ORDER_ATOMIC);
     var value_name = Blockly.JavaScript.valueToCode(block, 'OBJECT', Blockly.JavaScript.ORDER_NONE);
@@ -15,30 +17,6 @@ Blockly.JavaScript['variable_block'] = function (block) {
     return code
 };
 
-Blockly.JavaScript['vorm'] = function (block) {
-    var dropdown_shape = block.getFieldValue('shape');
-    var value_name = Blockly.JavaScript.valueToCode(block, 'NAME', Blockly.JavaScript.ORDER_ATOMIC);
-    var code = dropdown_shape;
-    switch (dropdown_shape) {
-        case 'square':
-            code = "Rectangle(new Point(20, 20), new Size(80, 60))";
-            break;
-        case 'circle':
-            code = "Circle(new Point(50, 50), 30)";
-            break;
-        case 'polygon':
-            code = "RegularPolygon(new Point(50, 50), 5, 30);";
-            break;
-        case 'star':
-            code = "Star( new Point(50, 50), 4, 20, 40)";
-            break;
-        default:
-            code = "error";
-    }
-
-    return [code, Blockly.JavaScript.ORDER_NONE];
-};
-
 
 Blockly.JavaScript['shape_defining'] = function (block) {
     var value_object = Blockly.JavaScript.valueToCode(block, 'object', Blockly.JavaScript.ORDER_ATOMIC);
@@ -47,10 +25,7 @@ Blockly.JavaScript['shape_defining'] = function (block) {
 
     var objectName = value_object.replace(/[^a-zA-z0-9]/g, "");
     var replace = /NAMEOBJECT/gi;
-    var code = statements_name.replace(replace, objectName) + '\n';
-    // console.log(statements_name);
-
-    return code;
+    return statements_name.replace(replace, objectName) + '\n';
 };
 
 // de blok waar je een lijn defineerd
@@ -62,7 +37,7 @@ Blockly.JavaScript['lijn'] = function (block) {
 
 Blockly.JavaScript['decalartion_parameters'] = function (block) {
     var dropdown_name = block.getFieldValue('propertied');
-    var value = Blockly.JavaScript.valueToCode(block, 'positie', Blockly.JavaScript.ORDER_MEMBER);
+    var value = Blockly.JavaScript.valueToCode(block, 'positie', Blockly.JavaScript.ORDER_NONE);
     var code;
     switch (dropdown_name) {
         case 'strokecolor':
@@ -115,12 +90,79 @@ Blockly.JavaScript['declaration_no_parameters'] = function (block) {
 Blockly.JavaScript['positie'] = function (block) {
     var value_x = Blockly.JavaScript.valueToCode(block, 'x', Blockly.JavaScript.ORDER_ATOMIC);
     var value_y = Blockly.JavaScript.valueToCode(block, 'y', Blockly.JavaScript.ORDER_ATOMIC);
-    var canvas = document.getElementById('myCanvas');
 
     value_x = "canvas.clientWidth / 100 *" + value_x;
-    value_y = " canvas.clientHeight / 100 *" + value_y;
+    value_y = "canvas.clientHeight / 100 *" + value_y;
 
     var code = value_x + ',' + value_y;
 
     return [code, Blockly.JavaScript.ORDER_MEMBER];
 };
+
+
+Blockly.JavaScript['circle_value'] = function(block) {
+    var number_y_value = block.getFieldValue('y-value');
+    var number_x_value = block.getFieldValue('x-value');
+    var number_radius = block.getFieldValue('radius');
+    var canvas = document.getElementById('myCanvas');
+
+    number_x_value =  number_x_value + ' / 100  *' + canvas.clientWidth;
+    number_y_value =  number_y_value + ' / 100  * ' + canvas.clientHeight;
+    number_radius =  number_radius + ' / 100  * ' + canvas.clientHeight;
+
+    var code = 'Circle(new Point('+ number_x_value+', '+ number_y_value+'), ' + number_radius+')';
+
+    return [code, Blockly.JavaScript.ORDER_NONE];
+};
+
+Blockly.JavaScript['square_value'] = function(block) {
+    var value_x1 = block.getFieldValue('x-value');
+    var value_y1 = block.getFieldValue('y-value');
+    var value_x2 = block.getFieldValue('x-value2');
+    var value_y2 = block.getFieldValue('y-value2');
+    var code;
+    var canvas = document.getElementById('myCanvas');
+
+    value_x1 =  value_x1 + ' / 100  *' + canvas.clientWidth;
+    value_y1 =  value_y1 +' / 100  * ' + canvas.clientHeight;
+    value_x2 = value_x2 + ' / 100  *' + canvas.clientWidth;
+    value_y2 = value_y2 + ' / 100  * ' + canvas.clientHeight;
+    code = 'Rectangle(new Point('+ value_x1 +', '+value_y1 +'), new Size(' + value_x2 + ', '+value_y2 +' ))';
+
+    return [code, Blockly.JavaScript.ORDER_NONE];
+};
+
+Blockly.JavaScript['pentagon_value'] = function(block) {
+    var value_x1 = block.getFieldValue('x-value');
+    var value_y1 = block.getFieldValue('y-value');
+    var number_side = block.getFieldValue('side');
+    var number_radius = block.getFieldValue('radius');
+    var canvas = document.getElementById('myCanvas');
+    value_x1 =  value_x1 + ' / 100  *' + canvas.clientWidth;
+    value_y1 =  value_y1 +' / 100  * ' + canvas.clientHeight;
+    number_radius =  number_radius + ' / 100  * ' + canvas.clientHeight;
+
+    var code = 'RegularPolygon(new Point('+ value_x1 +', '+ value_y1+'), '
+        +  number_side +', '+ number_radius+');';
+
+    return [code, Blockly.JavaScript.ORDER_NONE];
+};
+
+Blockly.JavaScript['star_value'] = function(block) {
+    var value_x1 = block.getFieldValue('x-value');
+    var value_y1 = block.getFieldValue('y-value');
+    var number_side = block.getFieldValue('side');
+    var number_radius = block.getFieldValue('radius');
+    var number_radius2 = block.getFieldValue('radius2');
+    var canvas = document.getElementById('myCanvas');
+    var code;
+
+    value_x1 =  value_x1 + ' / 100  *' + canvas.clientWidth;
+    value_y1 =  value_y1 +' / 100  * ' + canvas.clientHeight;
+    number_radius =  number_radius + ' / 100  * ' + canvas.clientHeight;
+    code =  'Star( new Point('+ value_x1 +', '+ value_y1+'),'+  number_side +', '+ number_radius+', '+ number_radius2+')';
+
+    return [code, Blockly.JavaScript.ORDER_NONE];
+};
+
+

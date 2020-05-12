@@ -12777,7 +12777,7 @@ var paper = function(self, undefined) {
                 if (window && element) {
                     this._id = element.getAttribute('id');
                     if (this._id == null)
-                        element.setAttribute('id', this._id = 'view-' + View._id++);
+                        element.setAttribute('id', this._id = 'model-' + View._id++);
                     DomEvent.add(element, this._viewEvents);
                     var none = 'none';
                     DomElement.setPrefixed(element.style, {

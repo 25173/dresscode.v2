@@ -25,7 +25,7 @@ window.onload = function () {
         horizontalLayout: false,
         toolboxPosition: 'start',
         css: true,
-        media: 'media/',
+        media: '../media/',
         rtl: false,
         scrollbars: true,
         sounds: false,
@@ -40,38 +40,21 @@ window.onload = function () {
         }
     };
 
-
-
     var demoWorkspace = Blockly.inject('blocklyDiv',options);
-
     demoWorkspace.addChangeListener(runCode);
-
-    var workspaceBlocks;
-    xmlhttp = new XMLHttpRequest();
-    xmlhttp.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-            workspaceBlocks = this;
-
-        }
-    };
-    xmlhttp.open("GET", "xml/workspaceblocks.xml" , true);
-    xmlhttp.send();
-    console.log(document.getElementById('workspaceBlocks'));
     Blockly.Xml.domToWorkspace(document.getElementById('workspaceBlocks'), demoWorkspace);
 
-
-
     // document.getElementById('showcode').onclick = function (ev) { showCode() };
+    //
+    // function showCode() {
+    //     // Generate JavaScript code and display it.
+    //     Blockly.JavaScript.INFINITE_LOOP_TRAP = null;
+    //     var code = Blockly.JavaScript.workspaceToCode(demoWorkspace);
+    //     alert(code);
+    // }
 
-    function showCode() {
-        // Generate JavaScript code and display it.
-        Blockly.JavaScript.INFINITE_LOOP_TRAP = null;
-        var code = Blockly.JavaScript.workspaceToCode(demoWorkspace);
-        alert(code);
-    }
 
-
-    var canvas = document.getElementById('myCanvas');
+    const canvas = document.getElementById('myCanvas');
 
     paper.setup(canvas);
 
@@ -82,38 +65,48 @@ window.onload = function () {
         window.LoopTrap = 1000;
         Blockly.JavaScript.INFINITE_LOOP_TRAP =
             'if (--window.LoopTrap == 0) throw "Infinite loop.";\n';
-        var code = Blockly.JavaScript.workspaceToCode(demoWorkspace);
+        const code = Blockly.JavaScript.workspaceToCode(demoWorkspace);
         Blockly.JavaScript.INFINITE_LOOP_TRAP = null;
+
 
         try {
             // Get a reference to the canvas object
 
-            var backgound_canvas = new Path.Rectangle(new Point(0, 0), new Point(canvas.clientWidth + 10, canvas.clientHeight + 10));
-            backgound_canvas.fillColor = "rgb(255,255,255)";
+            const Achtergrond = new Path.Rectangle(new Point(0, 0), new Point(canvas.clientWidth + 10, canvas.clientHeight + 10));
+            Achtergrond.fillColor = "rgb(255,255,255)";
 
             eval(code);  // = var path = new paper.Path();
-            var raster = new Raster('clothes');
+            const raster = new Raster('clothes');
             raster.position = view.center;
-            raster.size = new Size(canvas.clientWidth + 1, canvas.clientHeight + 2);
+            raster.size = new Size(canvas.clientWidth + 10, canvas.clientHeight + 10);
+            raster.opacity = 0.8;
 
 
             paper.view.draw();
 
         }
         catch (e) {
-            // alert(e);
+
         }
     }
 
 
     var dwn = document.getElementById('btndownload');
+
+    //het transparant maken van de achtergrond
     dwn.onclick = function(){
-        var canvas = document.getElementById("myCanvas"),
-            ctx = canvas.getContext("2d");
+        var canvas = document.getElementById('myCanvas');
+        var raster = new Raster('clothes');
+        raster.position = view.center;
+        raster.size = new Size(canvas.clientWidth + 10, canvas.clientHeight + 10);
+        raster.opacity = 1;
+        paper.view.draw();
+
+            var ctx = canvas.getContext("2d");
             // image = document.getElementById("testImage");
 
 
-        var imgd = ctx.getImageData(0, 0, canvas.clientWidth * 2 + 10 , canvas.clientHeight * 2 + 20),
+        var imgd = ctx.getImageData(0, 0, canvas.clientWidth * 2 + 10  , canvas.clientHeight  *2 + 10),
             pix = imgd.data,
             newColor = {r:0,g:0,b:0, a:0};
 
@@ -122,7 +115,7 @@ window.onload = function () {
                 g = pix[i+1],
                 b = pix[i+2];
 
-            if(r === 255&& g === 255 && b === 254 ){
+            if(r === 255 && g === 255 && b === 254 ){
                 // Change the white to the new color.
 
                 pix[i] = newColor.r;
@@ -134,33 +127,27 @@ window.onload = function () {
 
         ctx.putImageData(imgd, 0, 0);
 
-        download(document.getElementById('myCanvas'), 'myimage.png');
+        save(document.getElementById('myCanvas'));
     }
-
 };
 
 /* Canvas Donwload */
-function download(canvas, filename) {
-    /// create an "off-screen" anchor tag
-    var lnk = document.createElement('a'), e;
+function save(canvas) {
 
-    /// the key here is to set the download attribute of the a tag
-    lnk.download = filename;
+    const dataurl = canvas.toDataURL("image/png;base64");
 
-    /// convert canvas content to data-uri for link. When download
-    /// attribute is set the content pointed to by link will be
-    /// pushed as "download" in HTML5 capable browsers
-    lnk.href = canvas.toDataURL("image/png;base64");
+    const xmlhttp = new XMLHttpRequest();
 
-    /// create a "fake" click-event to trigger the download
-    if (document.createEvent) {
-        e = document.createEvent("MouseEvents");
-        e.initMouseEvent("click", true, true, window,
-            0, 0, 0, 0, 0, false, false, false,
-            false, 0, null);
+    xmlhttp.onreadystatechange = function() {
+        if (this.readyState === 4 && this.status === 200) {
+            console.log(this);
+            if(this.responseText == 1){
+                window.location.href = "gallery.html";
+            }
+        }
+    };
 
-        lnk.dispatchEvent(e);
-    } else if (lnk.fireEvent) {
-        lnk.fireEvent("onclick");
-    }
+    xmlhttp.open("POST", "../model/controller.php", true);
+    xmlhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+    xmlhttp.send("saveKleding=true&picture="+ dataurl);
 }

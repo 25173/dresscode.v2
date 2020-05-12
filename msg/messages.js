@@ -367,7 +367,7 @@ Blockly.Msg.CONTROLS_IF_ELSE_TITLE_ELSE = Blockly.Msg.CONTROLS_IF_MSG_ELSE;
 Blockly.Msg.CONTROLS_IF_ELSE_TOOLTIP = 'Add a final, catch-all condition to the if block.';
 
 /** @type {string} */
-/// button text - Text on a button inside a dialogue window, which will accept or acknowledge the contents of the dialogue when pressed.\n{{Identical|OK}}
+/// button text - Text on a button inside a dialogue window, which will accept or acknowledge the model of the dialogue when pressed.\n{{Identical|OK}}
 Blockly.Msg.IOS_OK = 'OK';
 /** @type {string} */
 /// button text - Text on a button inside a dialogue window, which will close or cancel the dialogue when pressed.\n{{Identical|Cancel}}
