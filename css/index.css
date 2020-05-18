@@ -7,7 +7,7 @@ body {
 .navbar {
     height: 80px;
     width: 100vw;
-    background-color: transparent;
+    background: transparent;
     display: block;
     text-align: left;
     position: absolute;
@@ -213,7 +213,9 @@ h1 {
     height: 500px;
     margin-top: 20px;
     margin-left: 5vw;
-    background-color: lightgray;
+    /*background-color: lightgray;*/
+    background-size: cover;
+    background: #DD0568 url("../media/kleren/5eb9a3a83ec02.png");
 }
 
 .vakje9 {
@@ -319,185 +321,203 @@ h1 {
 }
 
 /*Media query ipad*/
-@media only screen and (orientation: landscape) and (min-width: 880px) and (max-width: 1025px) {
+@media only screen and (orientation: landscape) and (min-device-width: 768px) and (max-device-width: 1024px) {
 
     /*HEADER*/
     #header_img img{
-        width: 73.4vw;
+        width: 55.2vw;
         margin-top: 0px;
+        position: relative;
     }
 
     .logo {
-        margin-top: 13px;
-        width: 45px;
-        margin-left: 26px;
+        margin-top: 10px;
+        width: 30px;
+        margin-left: 10px;
     }
     .profiel-icon {
-        width: 32px;
-        margin-left: -337px;
+        width: 26px;
+        margin-left: -500px;
+        margin-top: -10px;
     }
     .menu-icon {
-        width: 36px;
-        margin-left: -306px;
+        width: 27px;
+        margin-left: -480px;
+        margin-top: -9px;
     }
 
     .button6 {
-        width: 14.5vw;
-        height: 4%;
-        margin-top: -110px;
-        margin-left: 12vw;
-        font-size: 15px;
+        width: 11vw;
+        height: 25px;
+        margin-top: 198px;
+        margin-left: -46vw;
+        font-size: 10px;
+        position: absolute;
     }
 
     /*Meteen starten*/
     .vakje4 {
-        width: 21vw;
-        height: 34.5%;
-        margin-top: -266px;
-        margin-left: 20px;
+        width: 16vw;
+        height: 30.5%;
+        margin-top: -238px;
+        margin-left: 15px;
     }
 
     .button5 {
-        font-size: 14px;
-        width: 14vw;
-        margin-top: 96%;
-        margin-left: 3.6vw;
+        font-size: 10px;
+        width: 11vw;
+        height: 25px;
+        margin-top: 114%;
+        margin-left: 2.5vw;
     }
 
     /*Showpagina*/
     .vakje2 {
-        width: 21vw;
-        height: 34.5%;
+        width: 16vw;
+        height: 30.5%;
         margin-top: 38px;
-        margin-left: 266px;
+        margin-left: 200px;
     }
 
     .button2 {
-        margin-top: 96%;
-        margin-left: 3.6vw;
-        font-size: 14px;
-        width: 14vw;
+        margin-top: 114%;
+        margin-left: 2.5vw;
+        font-size: 10px;
+        width: 11vw;
+        height: 25px;
     }
 
     /*Inlog/registreer vakje met buttons*/
     .vakje3 {
-        width: 21vw;
-        height: 34.5%;
-        margin-top: -264px;
-        margin-left: 512px;
+        width: 16vw;
+        height: 30.5%;
+        margin-top: -234px;
+        margin-left: 384px;
     }
 
     .button3 {
-        font-size: 14px;
-        width: 14vw;
-        margin-left: 3.6vw;
+        font-size: 10px;
+        width: 11vw;
+        height: 25px;
+        margin-left: 2.5vw;
+        margin-top: 50%;
     }
 
     p {
-        font-size: 11px;
+        font-size: 8px;
         margin-left: 18px;
     }
 
     .button4 {
-        font-size: 14px;
-        width: 14vw;
-        margin-left: 3.6vw;
+        font-size: 10px;
+        width: 11vw;
+        margin-left: 2.5vw;
+        height: 25px;
     }
 
     /*box*/
     .box {
-        margin-top: 140px;
-        width: 73.4vw;
+        margin-top: 120px;
+        width: 55.2vw;
+        height: 345px;
     }
 
     /*Leer meer over programmeren*/
     .leren h3{
-        font-size: 20px;
-        margin-left: 2vw;
+        font-size: 18px;
+        margin-left: 1.5vw;
     }
 
     /*Vakje 6 met foto*/
     .vakje6 {
-        width: 33.5vw;
-        height: 278px;
-        margin-left: 2vw;
+        width: 25vw;
+        height: 251px;
+        margin-left: 1.5vw;
         margin-top: 30px;
     }
 
     /*Dresscode*/
+    .vakje7 {
+        width: 40.2vw;
+        margin-left: 15vw;
+    }
+
     .vakje7 h1 {
-        margin-top: -277px;
-        margin-left: -70px;
+        margin-top: -245px;
+        margin-left: 135px;
     }
 
     .vakje7 p {
-        font-size: 10px;
-        margin-left: -70px;
+        font-size: 8px;
+        margin-left: 135px;
         margin-top: -10px;
     }
 
     /*onderkant*/
     h1 {
-        font-size: 30px;
-        margin-left: 25px;
+        font-size: 23px;
+        margin-left: 20px;
         margin-top: 83px;
     }
 
     /*links boven en onder*/
     .vakje8 {
-        width: 34vw;
-        height: 340px;
-        margin-left: 1vw;
+        width: 26.2vw;
+        height: 260px;
+        margin-left: 0.7vw;
     }
     .vakje9 {
-        width: 34vw;
-        height: 275px;
-        margin-top: 20px;
-        margin-left: 1vw;
+        width: 26.2vw;
+        height: 215px;
+        margin-top: 8px;
+        margin-left: 0.7vw;
     }
 
     /*rechterkant (links -> rechts)*/
     .vakje10 {
-        width: 17vw;
-        height: 203px;
-        margin-top: -635px;
-        margin-left: 36.2vw;
+        width: 13vw;
+        height: 157px;
+        margin-top: -483px;
+        margin-left: 27.7vw;
     }
 
     .vakje11 {
-        height: 210px;
-        margin-top: 12px;
-        margin-left: 36.2vw;
+        width: 13vw;
+        height: 157px;
+        margin-top: 8px;
+        margin-left: 27.7vw;
     }
 
     .vakje12 {
-        height: 230px;
-        margin-top: -425px;
-        margin-left: 54.5vw;
+        width: 13vw;
+        height: 170px;
+        margin-top: -322px;
+        margin-left: 41.5vw;
     }
 
     .vakje13 {
-        height: 185px;
-        margin-top: 10px;
-        margin-left: 54.5vw;
+        width: 13vw;
+        height: 144px;
+        margin-top: 8px;
+        margin-left: 41.5vw;
     }
 
     .vakje14 {
-        width: 35.3vw;
-        height: 197px;
-        margin-top: 13px;
-        margin-left: 36.2vw;
+        width: 26.8vw;
+        height: 153px;
+        margin-top: 8px;
+        margin-left: 27.7vw;
     }
 
     /*Footer*/
     #footer_img {
-        width: 73.3vw;
+        width: 55.2vw;
         margin-top: 100px;
     }
 
     #footer_img img {
-        width: 73.3vw;
-        height: 155px;
+        width: 55.2vw;
+        height: 100px;
     }
 
     /*footer tekst*/
@@ -505,40 +525,41 @@ h1 {
         margin-top: -95px;
     }
     .footer-tekst {
-        font-size: 12px;
-        padding-top: 20px;
-        margin-left: 25px;
+        font-size: 9px;
+        padding-top: 47px;
+        margin-left: 15px;
     }
 
     /*footer icons*/
     .icons {
-        margin-top: -20px;
+        margin-left: -145px;
+        margin-top: -15px;
     }
 
     .icons .ticons {
-        margin-top: -14px;
+        margin-top: -13px;
     }
 
     .twitter {
         color: white;
-        margin-left: -80px;
+        margin-left: -66px;
         margin-top: -90px;
-        width: 29px;
-        height: 29px;
+        width: 23px;
+        height: 23px;
     }
 
     .facebook {
-        margin-top: -16px;
+        margin-top: -15px;
         margin-left: 639px;
-        width: 24px;
-        height: 24px;
+        width: 18px;
+        height: 18px;
     }
 
     .instagram {
         margin-top: -80px;
-        margin-left: 660px;
-        width: 27px;
-        height: 27px;
+        margin-left: 656px;
+        width: 21px;
+        height: 21px;
         color: black;
     }
 

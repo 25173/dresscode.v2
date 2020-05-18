@@ -9,7 +9,7 @@
 
 
 <div class="footer">
-
+    <img src="../media/icons/footer_v2.png" alt="" class="footer_img">
     <p class="footer-tekst">&copy;Dresscode.nl, 2020<br>Gemaakt door team Fusions, In opdracht van Milena Spaan</p>
     <div class="footer_icons">
         <svg class="facebook" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"

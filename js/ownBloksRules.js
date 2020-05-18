@@ -7,9 +7,11 @@ Blockly.JavaScript['variable_block'] = function (block) {
     var code;
 
     if (value_name === 'lijn') {
-        code = 'var ' + value_sk.replace(/[^a-zA-Z0-9 ]/g, '') + ' = new Path();';
+        code = 'var ' + value_sk.replace(/[^a-zA-Z0-9 ]/g, '') + ' = new Path(); \n';
+        code += value_sk.replace(/[^a-zA-Z0-9 ]/g, '') + ' .strokeColor = \'#cc33cc; \' \n';
     } else if (value_name !== '') {
-        code = 'var ' + value_sk.replace(/[^a-zA-Z0-9 ]/g, '') + ' = new Path.' + value_name + ';';
+        code = 'var ' + value_sk.replace(/[^a-zA-Z0-9 ]/g, '') + ' = new Path.' + value_name + '; \n';
+        code += value_sk.replace(/[^a-zA-Z0-9 ]/g, '') + ' .strokeColor = \'#cc33cc; \' \n';
     } else {
         code = "error";
     }
@@ -21,7 +23,6 @@ Blockly.JavaScript['variable_block'] = function (block) {
 Blockly.JavaScript['shape_defining'] = function (block) {
     var value_object = Blockly.JavaScript.valueToCode(block, 'object', Blockly.JavaScript.ORDER_ATOMIC);
     var statements_name = Blockly.JavaScript.statementToCode(block, 'statement');
-
 
     var objectName = value_object.replace(/[^a-zA-z0-9]/g, "");
     var replace = /NAMEOBJECT/gi;

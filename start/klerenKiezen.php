@@ -9,7 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Sniglet:wght@800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/kledingMenu.css">
-
+    <script src="../js/html2canvas.js"></script>
 </head>
 <body>
 <?php
@@ -22,9 +22,9 @@ include '../model/header.php';
 
     <form action="game.php" class="kleding_form" method="get">
 
-        <input type="radio" name="kleding" checked value="t-shirt.png" id="kleding1">
+        <input type="radio" name="kleding" checked value="ding.png" id="kleding1">
         <label for="kleding1">
-            <img src="../media/img/t-shirt.png" alt="">
+            <img src="../media/img/ding.png" alt="">
         </label>
         <input type="radio" name="kleding" value="ding2.png" id="kleding4">
         <label for="kleding4">
@@ -40,7 +40,16 @@ include '../model/header.php';
         </label>
 
         <input type="submit" value="kies dit">
+
     </form>
+    
+    <div class="avatar_section" id="avatar_section">
+        <img src="../media/avatars/topless-avatar.png" id="avatar" alt="">
+        <img src="../media/kleren/5ebdc4d5ac86e.png" class="kleren custom_made-jas" alt="">
+        <img src="../media/kleren/5eb9b82acdc59.png" class="kleren custom_made-t-shirt" alt="">
+        <button id="btn_t-shirt-1" >1</button>
+        <button id="btn_t-shirt-2" value="../media/kleren/5eba8ee2041a8.png">2</button>
+    </div>
 
 </main>
 

@@ -7,9 +7,12 @@
  */
 
 include 'funtion.php';
+if (isset($_POST['submit_register'])){
 
-if (isset($_POST['submit_login'])){
-	login();
+	registreren();
+
+}elseif (isset($_POST['submit_login'])){
+	inloggen();
 }elseif (isset($_POST['saveKleding'])){
 	// requires php5
 	define('UPLOAD_DIR', '../media/kleren/');
@@ -29,4 +32,7 @@ if (isset($_POST['submit_login'])){
 	}
 }elseif (isset($_POST['fotos'])){
 	echo json_encode(getPictures());
+}elseif (isset($_GET['logout'])){
+	logout();
 }
+checkCookies();

@@ -1,12 +1,12 @@
 
 <!--dit kan je negeren het is voor blocky de menu lijst-->
 <xml xmlns="https://developers.google.com/blockly/xml" id="toolbox" style="display: none">
-    <category name="Tekst" colour="#5ba58c">
+    <category name="Tekst" colour="#427AC8">
         <block type="text">
             <field name="TEXT"></field>
         </block>
     </category>
-    <category name="cijfers" colour="#5b67a5">
+    <category name="cijfers" colour="#4228D1">
         <block type="math_random_int">
             <value name="FROM">
                 <shadow type="math_number">
@@ -36,7 +36,7 @@
             </value>
         </block>
     </category>
-    <category name="objecten" colour="#745ba5">
+    <category name="objecten" colour="#3ADBBC">
         <block type="shape_defining"></block>
         <block type="variable_block"></block>
         <block type="decalartion_parameters">
@@ -54,7 +54,7 @@
         <block type="lijn"></block>
         <block type="positie"></block>
     </category>
-    <category name="vormen" colour="#ffffff">
+    <category name="vormen" colour="#73187F">
         <label text="defineren van een rondje"></label>
         <block type="circle_value"></block>
         <label text="defineren van een vierkant"></label>
@@ -64,7 +64,7 @@
         <label text="defineren van een ster"></label>
         <block type="star_value"></block>
     </category>
-    <category name="kleuren" colour="#a5745b">
+    <category name="kleuren" colour="#DD0568">
         <block type="colour_picker">
             <field name="COLOUR">#ff0000</field>
         </block>
@@ -104,7 +104,7 @@
             </value>
         </block>
     </category>
-    <category name="herhalingen" colour="#5ba55b">
+    <category name="herhalingen" colour="#F93B21">
         <block type="controls_for">
             <field name="VAR" id="[Qo.,jP~go_5.`lPc[[{">i</field>
             <value name="FROM">
@@ -124,108 +124,40 @@
             </value>
         </block>
     </category>
-    <category name="Variables" colour="#a55b80" custom="VARIABLE"></category>
+    <category name="Variables" colour="#FFC122" custom="VARIABLE"></category>
 </xml>
 
 <!--dit kan je negeren, het is de standaard code voor blocky die wat tekent-->
 <xml xmlns="https://developers.google.com/blockly/xml" id="workspaceBlocks" style="display: none" >
-    <block type="variable_block" id="7$jOSG.Si0kL=$jq^QW}" x="50" y="20">
+    <block type="variable_block" id="071aQQL!s[TG{$pH(5:%" x="37" y="88">
         <value name="NAME">
-            <block type="text" id="!kiDP$}V{1LytBW3YrF?">
-                <field name="TEXT">path</field>
+            <block type="text" id="Nt2Q$k;}.~EQ:[H$7I[4">
+                <field name="TEXT">vierkant</field>
             </block>
         </value>
         <value name="OBJECT">
-            <block type="lijn" id="D3FM]RWklLs0b]7gL;uA"></block>
+            <block type="square_value" id="(hC^bCd)P.?{uIn)WW=w">
+                <field name="x-value">40</field>
+                <field name="y-value">30</field>
+                <field name="x-value2">10</field>
+                <field name="y-value2">10</field>
+            </block>
         </value>
         <next>
-            <block type="shape_defining" id=")p9ay`]cFXe9~%8dH8]w">
+            <block type="shape_defining" id="td2;ZTqKqE?~es-9!u4Y">
                 <value name="object">
-                    <block type="text" id="Ap:|RtC8go5Zr.=$G`zk">
-                        <field name="TEXT">path</field>
+                    <block type="text" id="4jYkaOrHLlp`#KO^dO^n">
+                        <field name="TEXT">vierkant</field>
                     </block>
                 </value>
                 <statement name="statement">
-                    <block type="decalartion_parameters" id="{z7~|t-W$B{sImQ|11_A">
-                        <field name="propertied">strokecolor</field>
+                    <block type="decalartion_parameters" id="C2%BSKYVO-P$14=Z:d?q">
+                        <field name="propertied">fillcolor</field>
                         <value name="positie">
-                            <block type="colour_picker" id="zZV1M96lxye9t+5PY9/@">
-                                <field name="COLOUR">#ff0000</field>
+                            <block type="colour_picker" id="oF;OZF`/q7Q^xSO!2s.$">
+                                <field name="COLOUR">#cc33cc</field>
                             </block>
                         </value>
-                        <next>
-                            <block type="decalartion_parameters" id="~Q7rxcE410IwzaaOWr-6">
-                                <field name="propertied">strokewidth</field>
-                                <value name="positie">
-                                    <block type="math_number" id="U)D_Iv^e@Va5apOjBRUl">
-                                        <field name="NUM">10</field>
-                                    </block>
-                                </value>
-                                <next>
-                                    <block type="decalartion_parameters" id="0a9W4s)N8-Y[+LHF@HJq">
-                                        <field name="propertied">add</field>
-                                        <value name="positie">
-                                            <block type="positie" id="W,abmKvUkX_C6T-%|%WT">
-                                                <value name="x">
-                                                    <block type="math_number" id=";d7Bq{[~=L;y@~oUrU@j">
-                                                        <field name="NUM">0</field>
-                                                    </block>
-                                                </value>
-                                                <value name="y">
-                                                    <block type="math_number" id="8|]%YYqV!6f7LFC`np:y">
-                                                        <field name="NUM">0</field>
-                                                    </block>
-                                                </value>
-                                            </block>
-                                        </value>
-                                        <next>
-                                            <block type="decalartion_parameters" id="()1h46Bsw`@(pjvo/1^!">
-                                                <field name="propertied">add</field>
-                                                <value name="positie">
-                                                    <block type="positie" id="0y6?KR_}FZ{{x#MQAi48">
-                                                        <value name="x">
-                                                            <block type="math_number" id="-rz!/Yssz|ZQT2XfP#gk">
-                                                                <field name="NUM">50</field>
-                                                            </block>
-                                                        </value>
-                                                        <value name="y">
-                                                            <block type="math_number" id="QbIivRbw_IC.t;5?GWzg">
-                                                                <field name="NUM">20</field>
-                                                            </block>
-                                                        </value>
-                                                    </block>
-                                                </value>
-                                                <next>
-                                                    <block type="decalartion_parameters" id="-bAkzMF6%^hZ%)xzfu0E">
-                                                        <field name="propertied">add</field>
-                                                        <value name="positie">
-                                                            <block type="positie" id="a-%iYcQYMD_$NTJNbzm[">
-                                                                <value name="x">
-                                                                    <block type="math_number" id="HxHs]j]SG/THj#-5t6!m">
-                                                                        <field name="NUM">20</field>
-                                                                    </block>
-                                                                </value>
-                                                                <value name="y">
-                                                                    <block type="math_number" id="YQ@f$@;6wLzF+lRX3/gp">
-                                                                        <field name="NUM">100</field>
-                                                                    </block>
-                                                                </value>
-                                                            </block>
-                                                        </value>
-                                                        <next>
-                                                            <block type="declaration_no_parameters"
-                                                                   id="gYSM/Ex*eq5@:A:-G.r{">
-                                                                <field name="value">closed</field>
-                                                            </block>
-                                                        </next>
-                                                    </block>
-                                                </next>
-                                            </block>
-                                        </next>
-                                    </block>
-                                </next>
-                            </block>
-                        </next>
                     </block>
                 </statement>
             </block>

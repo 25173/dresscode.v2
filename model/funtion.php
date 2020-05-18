@@ -18,55 +18,118 @@ function close_connection( $connection ) {
 	$connection = null;
 }
 
-// in en uitloggen
-function login() {
+
+// registreren
+
+function registreren() {
 
 	$connection = connenct_db();
+	$name       = $_POST['naam'];
+	$email      = $_POST['email'];
+	$username   = $_POST['gebruiksnaam'];
+	$password   = $_POST['password'];
 
-	$query = "SELECT id,naam,hash from users WHERE Gname = ? AND Wword = ?";
+
+//	 bestaat er al iemand met deze gebruiksnaam?
+	$query = "SELECT id FROM users where gebruiksnaam = ? ";
+	$stmt = $connection->prepare( $query ) or die( 'error prepare 1' );
+	$stmt->bind_param( 's', $username ) or die( 'error binding 1' );
+	if ( ! $stmt->execute() ) {
+		echo $stmt->error;
+	}
+	$row = $stmt->fetch();
+
+	if ( $row ) {
+//		 er is al iemand met deze naam
+		echo "<h3> er is al iemand met deze gebruiksnaam </h3>";
+	} else {
+
+		$query = "INSERT INTO users VALUE (0,?,?,?,?)";
+		$stmt = $connection->prepare( $query ) or die( 'error prepare' );
+		$stmt->bind_param( 'ssss', $name, $username, $password, $email ) or die( 'error binding register' );
+		if ( ! $stmt->execute() ) {
+			echo $stmt->error;
+			exit();
+		}
+	}
+	$stmt->close();
+	close_connection( $connection );
+}
+
+function checkCookies() {
+	$dbc = connenct_db();
+
+
+	$query = "SELECT naam FROM users WHERE id = ?";
+	$stmt = $dbc->prepare( $query ) or die( 'error preparing checking' );
+	$stmt->bind_param( 'i', $userid ) or die( 'error binding' );
+	$stmt->bind_result( $name ) or die( 'error binding result cookies' );
+	$userid = $_COOKIE['userid'];
+
+	$stmt->execute() or die ( 'error executing.' );
+	$row = $stmt->fetch();
+
+	close_connection( $dbc );
+//	echo $name;
+	if ( $row ) {
+		return $name;
+	}
+}
+
+// in en uitloggen
+function inloggen() {
+	$connection = connenct_db();
+
+	$username = $connection->real_escape_string( $_POST['gebruiksnaam'] );
+	$password = $connection->real_escape_string( $_POST['password'] );
+	$query    = "SELECT id from users WHERE gebruiksnaam = ? AND wachtwoord = ?";
 	$stmt = $connection->prepare( $query ) or die( 'error prepare' );
 	$stmt->bind_param( 'ss', $username, $password ) or die( "error binding" );
-	$stmt->bind_result( $userid, $naam, $hash ) or die( "error binding result" );
 
-	$username = $_POST['gebruiksnaam'];
-	$password = encrypt( $_POST['password'] );
+
 	$result = $stmt->execute() or die( 'error finding user' );
-	$numbersOfRow = $stmt->fetch();
+	$stmt->bind_result( $userid ) or die( "error binding result" );
 	close_connection( $connection );
-	if ( ! $numbersOfRow ) {
-		echo 'je inlog gegevens kloppen niet <br>';
-//		exit();
+
+	$stmt->fetch();
+
+
+	if ( $userid == null ) {
+		echo '<p class="wrong"> Gebruiksnaam of wachtwoord is incorrect! <br> </p>';
 	} else {
+
 		setcookie( 'userid', $userid, time() + 3600 * 24 );
 		$_SESSION['userid'] = $userid;
-		setcookie( 'admin', $hash, time() + 3600 * 24 );
-		$_SESSION['admin'] = $hash;
-
-		header( 'Location: game.php' );
+		header( "Refresh:0" );
 
 	}
 }
 
 function logout() {
 	//delete the sessuibs
-	if ( isset( $_COOKIE[ session_name() ] ) ) {
-		setcookie( session_name(), '', time() - 3600 );
+	if ( $_SESSION ) {
+		session_unset();
 	}
+	$actual_link = "http://$_SERVER[HTTP_HOST]$_SERVER[SCRIPT_NAME]";
 
-
+//	echo  $actual_link;
 	if ( isset( $_COOKIE['userid'] ) ) {
 		setcookie( 'userid', '', time() - 3600 );
-		setcookie( 'hash', '', time() - 3600 );
+		header( "Refresh:0; url='" . $actual_link . "'" );
 	}
-	header( "Refresh:0" );
 }
 
 
 function savekleding( $place ) {
 	$dbc   = connenct_db();
-	$query = "INSERT INTO kleding VALUE (0,?,0,'haao')";
+	$query = "INSERT INTO kleding VALUE (0,?,0,?)";
 	$stmt = $dbc->prepare( $query ) or die( 'error for preparing to insert img in db' );
-	$stmt->bind_param( 's', $place ) or die( 'error for binding params' );
+	$stmt->bind_param( 'ss', $place, $name ) or die( 'error for binding params' );
+	if ( $_COOKIE['userid']) {
+		$name = checkCookies();
+	} else {
+		$name = 'Anoniem';
+			}
 	$stmt->execute() or die( '<br> error update' );
 	$stmt->close();
 	close_connection( $dbc );
@@ -76,7 +139,7 @@ function getPictures() {
 
 	$connection = connenct_db();
 
-	$query = "SELECT naam,url,userid,id FROM kleding";
+	$query = "SELECT naam,url,userid,id FROM kleding ORDER BY id DESC ";
 
 	$photo = array();
 	$statement = $connection->query( $query ) or die( 'Unable to query the database' );

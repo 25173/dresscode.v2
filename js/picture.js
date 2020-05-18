@@ -2,13 +2,13 @@ const showList = document.getElementById('showList');
 
 
 
-const loadImage = async () => {
+const loadImageToGallery = async () => {
     try {
         const xmlhttp = new XMLHttpRequest();
         xmlhttp.onreadystatechange = function () {
             if (this.readyState === 4 && this.status === 200) {
                 console.log(this);
-                showDress(this.responseText)
+                showDressToGallery(this.responseText)
             }
         };
 
@@ -21,7 +21,7 @@ const loadImage = async () => {
     }
 };
 
-const showDress = (clothes) => {
+const showDressToGallery = (clothes) => {
 
     clothes = JSON.parse(clothes);
     let pictures = "";
@@ -35,4 +35,4 @@ const showDress = (clothes) => {
     showList.innerHTML = pictures;
 };
 
-loadImage();
+loadImageToGallery();

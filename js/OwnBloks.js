@@ -9,7 +9,7 @@ Blockly.Blocks['variable_block'] = {
         this.setInputsInline(true);
         this.setPreviousStatement(true, null);
         this.setNextStatement(true, null);
-        this.setColour(230);
+        this.setColour('3ADBBC');
         this.setTooltip("define the object");
         this.setHelpUrl("");
     }
@@ -28,7 +28,7 @@ Blockly.Blocks['shape_defining'] = {
             .appendField("declaratie");
         this.setPreviousStatement(true, null);
         this.setNextStatement(true, null);
-        this.setColour("#9e009e");
+        this.setColour("#3ADBBC");
         this.setTooltip("om alle declaratie toe te voegen");
         this.setHelpUrl("");
     }
@@ -54,13 +54,14 @@ Blockly.Blocks['decalartion_parameters'] = {
                 ["lijnDikte", "strokewidth"],
                 ["plek", "add"],
                 ["achtergrond", "fillcolor"],
-                // ["uiteinde van de lijn", "strokeCap"],
-                ["lijn", "dashArray"], ["afvlakken", "flatten"]
-                // ["stijl", "style"]
+                // ["uiteinde van de lijn", "strokeCap"], // input moet  ' round/ square of butt' zijn
+                ["lijn", "dashArray"],
+                ["afvlakken", "flatten"],
+                ["transperant", "opacity"]
             ]), "propertied");
         this.setPreviousStatement(true, null);
         this.setNextStatement(true, null);
-        this.setColour(105);
+        this.setColour('3ADBBC');
         this.setTooltip("");
         this.setHelpUrl("");
     }
@@ -76,7 +77,7 @@ Blockly.Blocks['declaration_no_parameters'] = {
             ]), "value");
         this.setPreviousStatement(true, null);
         this.setNextStatement(true, null);
-        this.setColour(230);
+        this.setColour('3ADBBC');
         this.setTooltip("");
         this.setHelpUrl("");
     }
@@ -92,7 +93,7 @@ Blockly.Blocks['positie'] = {
             .appendField("y");
         this.setInputsInline(true);
         this.setOutput(true, null);
-        this.setColour(230);
+        this.setColour('3ADBBC');
         this.setTooltip("om de x en y positie te bepalen");
         this.setHelpUrl("");
     }
@@ -110,7 +111,7 @@ Blockly.Blocks['circle_value'] = {
             .appendField(new Blockly.FieldNumber(10), "radius");
         this.setInputsInline(false);
         this.setOutput(true, null);
-        this.setColour(230);
+        this.setColour('#73187F');
         this.setTooltip("");
         this.setHelpUrl("");
     }
@@ -131,7 +132,7 @@ Blockly.Blocks['square_value'] = {
             .appendField(new Blockly.FieldNumber(10, 0, 100), "y-value2");
         this.setInputsInline(false);
         this.setOutput(true, null);
-        this.setColour(230);
+        this.setColour('#73187F');
         this.setTooltip("");
         this.setHelpUrl("");
     }
@@ -141,17 +142,17 @@ Blockly.Blocks['pentagon_value'] = {
     init: function () {
         this.appendDummyInput()
             .appendField("X-waarde")
-            .appendField(new Blockly.FieldNumber(30, 0, 100), "x-value")
+            .appendField(new Blockly.FieldNumber(50, 0, 100), "x-value")
             .appendField("Y-waarde")
-            .appendField(new Blockly.FieldNumber(30, 0, 100), "y-value");
+            .appendField(new Blockly.FieldNumber(50, 0, 100), "y-value");
         this.appendDummyInput()
             .appendField("zijdes")
-            .appendField(new Blockly.FieldNumber(0), "side")
+            .appendField(new Blockly.FieldNumber(5), "side")
             .appendField("radius")
-            .appendField(new Blockly.FieldNumber(0), "radius");
+            .appendField(new Blockly.FieldNumber(20), "radius");
         this.setInputsInline(false);
         this.setOutput(true, null);
-        this.setColour(230);
+        this.setColour('#73187F');
         this.setTooltip("");
         this.setHelpUrl("");
     }
@@ -161,19 +162,19 @@ Blockly.Blocks['star_value'] = {
     init: function () {
         this.appendDummyInput()
             .appendField("X-waarde")
-            .appendField(new Blockly.FieldNumber(30, 0, 100), "x-value")
+            .appendField(new Blockly.FieldNumber(50, 0, 100), "x-value")
             .appendField("Y-waarde")
-            .appendField(new Blockly.FieldNumber(30, 0, 100), "y-value");
+            .appendField(new Blockly.FieldNumber(50, 0, 100), "y-value");
         this.appendDummyInput()
             .appendField("punten")
-            .appendField(new Blockly.FieldNumber(0), "side")
+            .appendField(new Blockly.FieldNumber(4), "side")
             .appendField("radius 1")
-            .appendField(new Blockly.FieldNumber(0), "radius")
+            .appendField(new Blockly.FieldNumber(10), "radius")
             .appendField("radius 2")
-            .appendField(new Blockly.FieldNumber(0), "radius2");
+            .appendField(new Blockly.FieldNumber(20), "radius2");
         this.setInputsInline(false);
         this.setOutput(true, null);
-        this.setColour(230);
+        this.setColour('#73187F');
         this.setTooltip("");
         this.setHelpUrl("");
     }
