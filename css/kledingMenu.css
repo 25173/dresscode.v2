@@ -2,11 +2,13 @@
     box-sizing: border-box;
 }
 .kleding_form{
-    height: 20%;
+    height: 80%;
     width: 100%;
     text-align: center;
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    margin: auto;
+    grid-gap: 20px;
+    grid-template-columns: 1fr 1fr 1fr;
 }
 
 .kleding_form input[type = radio]{

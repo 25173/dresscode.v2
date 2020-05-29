@@ -3,17 +3,6 @@ window.onload = function () {
 
     var toolbox = document.getElementById('toolbox');
 
-    var theme = {
-        "colour":"#A5745B",
-        "lists":"260",
-        "logic":"210",
-        "loops":"120",
-        "math":"230",
-        "procedure":"290",
-        "text":"160",
-        "variables":"310",
-        "variables_dynamic":"310"
-    };
 
     var options = {
         toolbox: toolbox,
@@ -37,6 +26,37 @@ window.onload = function () {
             maxScale: 3,
             minScale: 0.3,
             scaleSpeed: 1.2
+        },
+        theme: {
+            'blockStyles' : {
+                "list_blocks": {
+                    "colourPrimary": "#4a148c",
+                    "colourSecondary":"#AD7BE9",
+                    "colourTertiary":"#CDB6E9"
+                },
+                "text":{
+                    "colourPrimary": "#4a148c",
+                    "colourSecondary":"#AD7BE9",
+                    "colourTertiary":"#CDB6E9"
+                },
+                "colour_blocks": {
+                    "colourPrimary": "#DD0568"
+                }
+            },
+            'categoryStyles' : {
+                "list_category": {
+                    "colour": "#4a148c"
+                }
+            },
+            'componentStyles' : {
+                'workspaceBackgroundColour': '#fff',
+                "toolboxBackgroundColour": "#73187F",
+                "scrollbarColour":"#DD0568",
+                "toolboxForegroundColour" : '#fff',
+                'flyoutBackgroundColour': '#c629d9',
+                'flyoutForegroundColour' : '#000',
+                'flyoutOpacity' : 0.3
+            }
         }
     };
 
@@ -54,23 +74,42 @@ window.onload = function () {
         Blockly.JavaScript.INFINITE_LOOP_TRAP = null;
         const code = Blockly.JavaScript.workspaceToCode(demoWorkspace);
         alert(code);
-        saveCode();
+
     }
 
 
-
-    const canvas = document.getElementById('myCanvas');
+    let canvas = document.getElementById('myCanvas');
+    canvas.clientWidth = canvas.clientHeight;
+    console.log(canvas.clientWidth);
 
     paper.setup(canvas);
 
+
+
     // OM DE CODE OP TE SLAAN DIE JE HEB GEMAAKT
-    function saveCode() {
+    var save_btn =document.getElementById('save_code');
 
+    save_btn.onclick = function () {
         const xml = Blockly.Xml.workspaceToDom(Blockly.mainWorkspace);
-        // localStorage.setItem(document.getElementById('workspaceBlocks').value,Blockly.Xml.domToText(xml));
-            console.log(xml);
+        console.log(xml);
 
-    }
+        const soort = document.getElementById('kleding_soort').value;
+        const xmlhttp = new XMLHttpRequest();
+
+        xmlhttp.onreadystatechange = function() {
+            if (this.readyState === 4 && this.status === 200) {
+                console.log(this.responseText);
+                if(this.response == '1'){
+                    window.location.href = "../start/gallery.php";
+                }
+            }
+        };
+
+        xmlhttp.open("POST", "../model/controller.php", true);
+        xmlhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+        xmlhttp.send("saveCode=true&soort="+ soort +"&code="+ xml);
+
+    };
 
 //  HIER WORD DE CODE UITGELEZEN DIE JE MET BLOCKY MAAK
     function runCode(primaryEvent) {
@@ -81,11 +120,11 @@ window.onload = function () {
         const code = Blockly.JavaScript.workspaceToCode(demoWorkspace);
         Blockly.JavaScript.INFINITE_LOOP_TRAP = null;
 
-        const Achtergrond = new Path.Rectangle(new Point(0, 0), new Point(canvas.clientWidth + 10, canvas.clientHeight + 10));
-        Achtergrond.fillColor = "rgb(255,255,255)";
+        const achtergrond = new Path.Rectangle(new Point(0, 0), new Point(canvas.clientWidth + 10, canvas.clientHeight + 10));
+        achtergrond.fillColor = "rgb(255,255,255)";
         const raster = new Raster('clothes');
         raster.position = view.center;
-        raster.size = new Size(canvas.clientWidth + 10, canvas.clientHeight + 10);
+        raster.size = new Size(canvas.clientWidth, canvas.clientHeight);
 
         try {
             // Get a reference to the canvas object
@@ -93,7 +132,7 @@ window.onload = function () {
             eval(code);  // = var path = new paper.Path();
             const raster = new Raster('clothes');
             raster.position = view.center;
-            raster.size = new Size(canvas.clientWidth + 10, canvas.clientHeight + 10);
+            raster.size = new Size(canvas.clientWidth, canvas.clientHeight);
             raster.opacity = 0.8;
 
             paper.view.draw();
@@ -111,16 +150,15 @@ window.onload = function () {
     //het transparant maken van de achtergrond
     dwn.onclick = function(){
         const canvas = document.getElementById('myCanvas');
-        const exampleCanvas = document.getElementsByClassName('example-canvas')[0];
+
         const raster = new Raster('clothes');
         raster.position = view.center;
-        raster.size = new Size(canvas.clientWidth + 10, canvas.clientHeight + 10);
+        raster.size = new Size(canvas.clientWidth, canvas.clientHeight);
         raster.opacity = 1;
         paper.view.draw();
 
         const ctx = canvas.getContext("2d");
-        const ctx2 = exampleCanvas.getContext('2d');
-        // image = document.getElementById("testImage");
+
 
 
         const imgd = ctx.getImageData(0, 0, canvas.clientWidth * 2 + 10, canvas.clientHeight * 2 + 10),
@@ -143,31 +181,22 @@ window.onload = function () {
             }
         }
 
-        ctx2.putImageData(imgd, 0, 0);
+        ctx.putImageData(imgd, 0, 0);
 
 
-        document.getElementsByClassName('saveModal')[0].style.display = 'block';
-        // save(document.getElementById('myCanvas'));
+        save(document.getElementById('myCanvas'));
         // TO DO this ====================================
 
     };
 
-    const close_modal_save = document.getElementsByClassName('close_modal-save');
-    if (close_modal_save){
-        for(let i = 0 ; i < close_modal_save.length; i++){
-            close_modal_save[0].onclick = function () {
-                document.getElementsByClassName('saveModal')[0].style.display = 'none';
-                console.log('close');
-            };
-        }
-    }
+
 };
 
 /* Canvas Donwload */
 function save(canvas) {
 
     const dataurl = canvas.toDataURL("image/png;base64");
-
+    const soort = document.getElementById('kleding_soort').value;
     const xmlhttp = new XMLHttpRequest();
 
     xmlhttp.onreadystatechange = function() {
@@ -181,6 +210,6 @@ function save(canvas) {
 
     xmlhttp.open("POST", "../model/controller.php", true);
     xmlhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-    xmlhttp.send("saveKleding=true&picture="+ dataurl);
+    xmlhttp.send("saveKleding=true&soort="+ soort +"&picture="+ dataurl);
 }
 

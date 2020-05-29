@@ -5,7 +5,7 @@ include_once( '../values.php' );
 
 //verbinding maken met de database
 function connenct_db() {
-	$dbc = new mysqli( HOST, USER, PASS, DB );
+	$dbc = new mysqli( HOST, USER, PASS, DB);
 	if ( $dbc->connect_errno ) {
 		echo ' connect error:' . $dbc->connect_errno;
 		echo HOST;
@@ -44,7 +44,7 @@ function registreren() {
 		echo "<h3> er is al iemand met deze gebruiksnaam </h3>";
 	} else {
 
-		$query = "INSERT INTO users VALUE (0,?,?,?,?)";
+		$query = "INSERT INTO users VALUE (0,?,?,?,?,1)";
 		$stmt = $connection->prepare( $query ) or die( 'error prepare' );
 		$stmt->bind_param( 'ssss', $name, $username, $password, $email ) or die( 'error binding register' );
 		if ( ! $stmt->execute() ) {
@@ -72,6 +72,8 @@ function checkCookies() {
 	close_connection( $dbc );
 //	echo $name;
 	if ( $row ) {
+		$_SESSION['userid'] = $userid;
+
 		return $name;
 	}
 }
@@ -119,17 +121,40 @@ function logout() {
 	}
 }
 
-
-function savekleding( $place ) {
-	$dbc   = connenct_db();
-	$query = "INSERT INTO kleding VALUE (0,?,0,?)";
-	$stmt = $dbc->prepare( $query ) or die( 'error for preparing to insert img in db' );
-	$stmt->bind_param( 'ss', $place, $name ) or die( 'error for binding params' );
-	if ( $_COOKIE['userid']) {
-		$name = checkCookies();
+function saveCode($soort, $code){
+	$dbc = connenct_db();
+	if ( $_SESSION['userid'] ) {
+		$userid = $_SESSION['userid'];
 	} else {
-		$name = 'Anoniem';
-			}
+		$userid = 0;
+	}
+	if ( $soort ) {
+		$name = $_POST['soort'];
+	}
+
+	$query = "INSERT INTO save_codes VALUE (0,?,?,?)";
+	$stmt = $dbc->prepare( $query ) or die( 'error for preparing to insert img in db' );
+	$stmt->bind_param( 'iss', $userid, $code, $soort ) or die( 'error for binding params' );
+	$stmt->execute() or die( '<br> error update' );
+	$stmt->close();
+	close_connection( $dbc );
+}
+
+function savekleding( $place, $soort ) {
+	$dbc = connenct_db();
+	if ( $_SESSION['userid'] ) {
+		$userid = $_SESSION['userid'];
+	} else {
+		$userid = 0;
+	}
+	if ( $soort ) {
+		$name = $_POST['soort'];
+	}
+
+	$query = "INSERT INTO kleding VALUE (0,?,?,?)";
+	$stmt = $dbc->prepare( $query ) or die( 'error for preparing to insert img in db' );
+	$stmt->bind_param( 'sis', $place, $userid, $name ) or die( 'error for binding params' );
+
 	$stmt->execute() or die( '<br> error update' );
 	$stmt->close();
 	close_connection( $dbc );
@@ -139,7 +164,7 @@ function getPictures() {
 
 	$connection = connenct_db();
 
-	$query = "SELECT naam,url,userid,id FROM kleding ORDER BY id DESC ";
+	$query = "SELECT soort,url,userid,id FROM kleding ORDER BY id DESC ";
 
 	$photo = array();
 	$statement = $connection->query( $query ) or die( 'Unable to query the database' );
@@ -154,5 +179,60 @@ function getPictures() {
 	close_connection( $connection );
 
 	// Retun tha array
+	return $photo;
+}
+
+function getAvatar() {
+	$dbc = connenct_db();
+
+
+	$query = "SELECT Avatar FROM users WHERE id = ?";
+	$stmt = $dbc->prepare( $query ) or die( 'error preparing checking' );
+	$stmt->bind_param( 'i', $userid ) or die( 'error binding' );
+	$stmt->bind_result( $avatar ) or die( 'error binding result cookies' );
+	$userid = $_COOKIE['userid'];
+
+	$stmt->execute() or die ( 'error executing.' );
+	$row = $stmt->fetch();
+
+	close_connection( $dbc );
+	if ( $row ) {
+
+		return $avatar;
+	}
+	return false;
+}
+
+function changeAvatar($avater){
+
+	$id = $_COOKIE['userid'];
+	$db    = connenct_db();
+	$query = "UPDATE users SET Avatar = ? WHERE id = 5";
+	$stmt = $db->prepare( $query ) or die( 'error prepare' );
+	$stmt->bind_param( 's', $avater ) or die( "error binding" );
+	$result = $stmt->execute() or die( 'error update' );
+	close_connection( $db );
+	return $id;
+}
+
+//only your own make clothes
+function getYourClothes() {
+	$dbc   = connenct_db();
+	$id    = $_SESSION['userid'];
+	$photo = array();
+	$query = "SELECT url,soort FROM kleding WHERE userId = ? AND soort != 'avatar' ORDER BY id";
+	$stmt  = $dbc->prepare( $query );
+	$stmt->bind_param( 'i', $id );
+	$stmt->execute() or die( 'error executing the query' );
+	$stmt->bind_result( $url, $soort ) or die( 'error binding result cookies' );
+	$i = 0;
+	while ( $stmt->fetch() ) {
+		$photo[ $i ]['url']   = $url;
+		$photo[ $i ]['soort'] = $soort;
+		$i ++;
+	}
+	$stmt->close();
+	close_connection( $dbc );
+
 	return $photo;
 }

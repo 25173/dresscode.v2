@@ -25,14 +25,22 @@ if (isset($_POST['submit_register'])){
 	$success = file_put_contents($file, $data);
 
 	if ($success) {
-		savekleding($name);
+
+		savekleding($name, $_POST['soort']);
 		echo '1';
 	}else{
 		echo '0';
 	}
+
 }elseif (isset($_POST['fotos'])){
 	echo json_encode(getPictures());
 }elseif (isset($_GET['logout'])){
 	logout();
+}elseif (isset($_POST['changeAvatar'])){
+	$avatar = $_POST['avatarNumber'];
+	echo changeAvatar($avatar);
+}elseif (isset($_POST['saveCode'])){
+	saveCode($_POST['soort'],$_POST['code']);
+
 }
 checkCookies();

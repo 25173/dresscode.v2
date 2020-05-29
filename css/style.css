@@ -3,7 +3,9 @@ body {
     margin: 0;
     overflow: scroll;
     height: 100vh;
-    background: linear-gradient(90deg, rgb(201,245,235),rgb(212,224,242));
+    width: 100vw;
+    z-index: -3;
+    background: linear-gradient(25deg, rgb(201,245,235),rgb(212,224,242));
 }
 
 *{
@@ -45,15 +47,15 @@ body {
 }
 .logo {
     position: absolute;
-    margin-top: 13px;
+    margin-top: 18px;
     z-index: 2;
-    width: 55px;
+    width: 40px;
     margin-left: 80px;
 }
 
 .profiel-icon {
     margin-left: auto;
-    width: 40px;
+    width: 30px;
 }
 .dropdown {
     position: relative;
@@ -61,14 +63,14 @@ body {
 }
 
 .menu-icon {
-    width: 40px;
+    width: 30px;
     cursor: pointer;
 }
 
 .navbar_dropdown-content{
     display: none;
     position: absolute;
-    right: 10px;
+    right: 0;
     text-align: right;
     background-color: #DD0568;
     min-width: 150px;
@@ -97,7 +99,7 @@ body {
 /*main wrapper ----------------------------*/
 .wrapper{
     padding: 20px;
-    height: calc(100vh - 160px);
+    height: calc(100vh - 80px);
     overflow: scroll;
     /*background-color: rgb(172, 202, 237);*/
 }
@@ -238,8 +240,10 @@ a {
     height: 40px;
     width: 100%;
     /*margin: 0 auto 0 auto;*/
+    position: relative;
     background: #DD0568;
     text-align: right;
+    z-index: 0;
     border-radius: 7px 7px 0 0 ;
 }
 
@@ -259,7 +263,7 @@ a {
     float: right;
     cursor: pointer;
 }
-.navbar_game-canvas #btndownload{
+.navbar_game-canvas #btndownload, #save_code{
     background: white;
     color: #DD0568;
     padding: 3px;
@@ -270,44 +274,63 @@ a {
     border: none;
     border-radius: 7px;
 }
+#save_code{
+    margin-left: 50px;
+}
 .codes{
     /*border: 1px solid black;*/
     height: auto;
     border-radius: 7px 7px 0 0 ;
-    box-shadow: 0 3px 5px 0 black;
+    box-shadow: 0 3px 5px 0 #5b5b5b;
 }
 .uitwerking{
     width: 100%;
-    margin: 0 auto 0 auto;
+    margin: auto;
+    position: relative;
     height: 100%;
     text-align: center;
     border-radius: 7px 7px 0 0 ;
-    box-shadow: 0 3px 5px 0 black;
+    box-shadow: 0 3px 5px 0 #5b5b5b;
 }
 #blocklyDiv{
     height: calc(100% - 40px);
-    max-height: 500px;
+    /*max-height: 500px;*/
     width: 100%;
 
 }
 
 /* Scale canvas with resize attribute to full size */
 #myCanvas {
-
-    max-width: 500px;
-    margin: 0 auto 0 auto;
-    height: calc(100% - 40px);
-    /*min-height: 300px;*/
-    width: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 1;
+    -ms-transform: translateY(-50%) translatex(-50%);
+    transform: translatex(-50%) translateY(-50%);
+    height: 250px;
+    width: 250px;
 }
 
 .grid_2{
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 3fr 2fr;
     box-sizing: border-box;
     grid-gap: 20px;
     height: 70%;
 }
+
+@media only screen and (orientation: landscape) and (min-width: 1200px) and (min-height: 977px) {
+    .grid_2{
+        grid-template-columns: 1fr 1fr;
+
+    }
+    #myCanvas {
+        height: 500px;
+        width: 500px;
+    }
+}
+
+
 
 .game_page{
     padding: 30px;
@@ -333,46 +356,108 @@ a {
     background: #DD0568;
     border-radius: 7px;
 }
-
-/* save modal windows*/
-
-.saveModal{
-    background: transparent;
-    width: 100vw;
+.modal {
     display: none;
-    height: 100vh;
-    position: absolute;
-    top: 0;
+    position: fixed;
     z-index: 71;
+    padding-top: 50px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.4);
 }
 
-.modal-window{
-    background: white;
-    border-radius: 15px;
+.modal_content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
     width: 80%;
-    height: 70%;
-    margin: 5% auto;
+}
+
+.hidden {
+    display: none
+}
+
+.close:hover,
+.close:focus {
+    cursor: pointer;
+}
+
+.expand_text {
+    cursor: pointer
+}
+
+.slideshow h2, h3{
+    font-family: 'Open Sans', sans-serif;
+}
+
+.slides,
+.slides2 {
+    display: none
+}
+.slides3{
+    display: grid;
+    grid-template-columns: 3fr 2fr;
+}
+
+.slides,
+.slides2,.slides3 img {
+    height: 350px;
+}
+
+/*.prev,*/
+/*.next {*/
+    /*cursor: pointer;*/
+    /*width: auto;*/
+    /*padding: 16px;*/
+    /*margin-top: -22px;*/
+    /*color: black;*/
+    /*font-weight: bold;*/
+    /*font-size: 18px;*/
+    /*transition: 0.6s ease;*/
+/*}*/
+
+/*.next {*/
+    /*right: 0;*/
+    /*border-radius: 3px 0 0 3px;*/
+/*}*/
+
+
+.dot,
+.dot2 {
+    cursor: pointer;
+    height: 15px;
+    width: 15px;
+    margin: 0 2px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.6s ease;
+}
+
+.active,
+.dot:hover {
+    background-color: #717171;
+}
+
+.gradient_btn-tips {
+    background-image: linear-gradient(to right, #751875 0%, #dd0568 100%);
+    padding: 10px;
     text-align: center;
-}
-
-.modal-window .close_modal-save{
-    width: 20px;
-    float: right;
-    margin: 30px;
-}
-
-.modal-window .example-canvas{
-    background: #DD0568;
-    height: 80%;
-    width: 30vw;
-    margin: 5% ;
-
+    text-transform: uppercase;
+    color: #FFF;
+    border-radius: 5px;
+    width: 25%;
+    margin-bottom: 10px;
 }
 
 /*Footer*/
 .footer {
     width: 100vw;
-
     display: block;
     position: absolute;
     height: 80px;

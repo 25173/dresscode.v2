@@ -27,9 +27,9 @@ const showDressToGallery = (clothes) => {
     let pictures = "";
 
     for (let i = 0; i < clothes.length; i++) {
-        pictures += "<a href='../media/kleren/" + clothes[i]['url'] + "' data-lightbox='fashionshow' data-title ='" + clothes[i]['naam'] + "'> " +
-            "<img src='../media/kleren/" + clothes[i]['url'] + "' alt='" + clothes[i]['naam'] + "'>" +
-            '</a>';
+        pictures += "<div class='grid-item'> <a href='../media/kleren/" + clothes[i]['url'] + "' data-lightbox='fashionshow' data-title ='" + clothes[i]['soort'] + "'> " +
+            "<img src='../media/kleren/" + clothes[i]['url'] + "' alt='" + clothes[i]['soort'] + "'>" +
+            '</a> </div>';
     }
 
     showList.innerHTML = pictures;

@@ -9,10 +9,10 @@ include '../model/controller.php';
 
         <div class="navbar_menu-icons">
 			<?php if ( $_COOKIE['userid'] ) { ?>
-                <p style="color: white; font-size: 20px; font-weight: bold"><?php
+                <p style="color: white; font-size: 15px; font-weight: bold"><?php
 					echo checkCookies();
 					?></p>
-                <img src="../media/icons/icon_profile_wit.png" alt="" class="profiel-icon">
+                <a href="closet.php"><img src="../media/icons/icon_profile_wit.png" alt="" class="profiel-icon"></a>
 			<?php }else{
 			    ?>
                 <div></div>
@@ -27,16 +27,15 @@ include '../model/controller.php';
                         <p class="navbar_dropdown-item registerFormButton">Registreren</p>
                         <a href="klerenKiezen.php" style="text-underline: none"><p class="navbar_dropdown-item">
                                 Coderen</p></a>
-                        <a href="gallery.php" style="text-underline: none"><p class="navbar_dropdown-item">Show
-                                pagina</p></a>
+                        <a href="gallery.php" style="text-underline: none"><p class="navbar_dropdown-item">Show pagina</p></a>
+                        <a href="about.php" style="text-underline: none"><p class="navbar_dropdown-item">contact</p></a>
 					<?php } else { ?>
                         <a href="klerenKiezen.php" style="text-underline: none"><p class="navbar_dropdown-item">
                                 Coderen</p></a>
-                        <a href="gallery.php" style="text-underline: none"><p class="navbar_dropdown-item">Show
-                                pagina</p></a>
+                        <a href="gallery.php" style="text-underline: none"><p class="navbar_dropdown-item">Show pagina</p></a>
+                        <a href="about.php" style="text-underline: none"><p class="navbar_dropdown-item">contact</p></a>
                         <a href="?logout=1"><p class="navbar_dropdown-item">uitloggen</p></a>
 					<?php } ?>
-
                 </div>
             </div>
 

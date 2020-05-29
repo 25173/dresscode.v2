@@ -37,8 +37,32 @@
         </block>
     </category>
     <category name="objecten" colour="#3ADBBC">
-        <block type="shape_defining"></block>
-        <block type="variable_block"></block>
+        <block type="variable_block">
+            <value name="NAME">
+                <block type="text">
+                    <field name="TEXT"></field>
+                </block>
+            </value>
+        </block>
+        <block type="shape_defining">
+            <value name="object">
+                <block type="text">
+                    <field name="TEXT"></field>
+                </block>
+            </value>
+        </block>
+        <block type="positie">
+            <value name="x">
+                <block type="math_number">
+                    <field name="NUM">0</field>
+                </block>
+            </value>
+            <value name="y">
+                <block type="math_number">
+                    <field name="NUM">0</field>
+                </block>
+            </value>
+        </block>
         <block type="decalartion_parameters">
             <field name="propertied">strokecolor</field>
         </block>
@@ -52,7 +76,6 @@
             <field name="value">closed</field>
         </block>
         <block type="lijn"></block>
-        <block type="positie"></block>
     </category>
     <category name="vormen" colour="#73187F">
         <label text="defineren van een rondje"></label>
@@ -129,38 +152,39 @@
 
 <!--dit kan je negeren, het is de standaard code voor blocky die wat tekent-->
 <xml xmlns="https://developers.google.com/blockly/xml" id="workspaceBlocks" style="display: none" >
-    <block type="variable_block" id="071aQQL!s[TG{$pH(5:%" x="37" y="88">
-        <value name="NAME">
-            <block type="text" id="Nt2Q$k;}.~EQ:[H$7I[4">
-                <field name="TEXT">vierkant</field>
-            </block>
-        </value>
-        <value name="OBJECT">
-            <block type="square_value" id="(hC^bCd)P.?{uIn)WW=w">
-                <field name="x-value">40</field>
-                <field name="y-value">30</field>
-                <field name="x-value2">10</field>
-                <field name="y-value2">10</field>
-            </block>
-        </value>
-        <next>
-            <block type="shape_defining" id="td2;ZTqKqE?~es-9!u4Y">
-                <value name="object">
-                    <block type="text" id="4jYkaOrHLlp`#KO^dO^n">
-                        <field name="TEXT">vierkant</field>
-                    </block>
-                </value>
-                <statement name="statement">
-                    <block type="decalartion_parameters" id="C2%BSKYVO-P$14=Z:d?q">
-                        <field name="propertied">fillcolor</field>
-                        <value name="positie">
-                            <block type="colour_picker" id="oF;OZF`/q7Q^xSO!2s.$">
-                                <field name="COLOUR">#cc33cc</field>
-                            </block>
-                        </value>
-                    </block>
-                </statement>
-            </block>
-        </next>
-    </block>
+    <!--<block type="variable_block" id="071aQQL!s[TG{$pH(5:%" x="37" y="88">-->
+        <!--<value name="NAME">-->
+            <!--<block type="text" id="Nt2Q$k;}.~EQ:[H$7I[4">-->
+                <!--<field name="TEXT">vierkant</field>-->
+            <!--</block>-->
+        <!--</value>-->
+        <!--<value name="OBJECT">-->
+            <!--<block type="square_value" id="(hC^bCd)P.?{uIn)WW=w">-->
+                <!--<field name="x-value">40</field>-->
+                <!--<field name="y-value">30</field>-->
+                <!--<field name="x-value2">10</field>-->
+                <!--<field name="y-value2">10</field>-->
+            <!--</block>-->
+        <!--</value>-->
+        <!--<next>-->
+            <!--<block type="shape_defining" id="td2;ZTqKqE?~es-9!u4Y">-->
+                <!--<value name="object">-->
+                    <!--<block type="text" id="4jYkaOrHLlp`#KO^dO^n">-->
+                        <!--<field name="TEXT">vierkant</field>-->
+                    <!--</block>-->
+                <!--</value>-->
+                <!--<statement name="statement">-->
+                    <!--<block type="decalartion_parameters" id="C2%BSKYVO-P$14=Z:d?q">-->
+                        <!--<field name="propertied">fillcolor</field>-->
+                        <!--<value name="positie">-->
+                            <!--<block type="colour_picker" id="oF;OZF`/q7Q^xSO!2s.$">-->
+                                <!--<field name="COLOUR">#cc33cc</field>-->
+                            <!--</block>-->
+                        <!--</value>-->
+                    <!--</block>-->
+                <!--</statement>-->
+            <!--</block>-->
+        <!--</next>-->
+    <!--</block>-->
 </xml>
+

@@ -55,10 +55,10 @@
         <input type="text" class="email" name="naam" placeholder="E-mailadres" required>
 
         <h2>Gebruikersnaam</h2>
-        <input type="text" class="email" name="gebruiksnaam" placeholder="E-mailadres" required>
+        <input type="text" class="email" name="gebruiksnaam" placeholder="Gebruiksnaam" required>
 
         <h2>E-mailadres</h2>
-        <input type="text" class="email" name="email" placeholder="Gebruikersnaam" required>
+        <input type="text" class="email" name="email" placeholder="E-mail" required>
 
         <h3>Wachtwoord</h3>
         <input type="password" class="wachtwoord" name="password" placeholder="Wachtwoord" required
