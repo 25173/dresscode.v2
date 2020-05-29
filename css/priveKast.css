@@ -1,0 +1,349 @@
+body {
+    position: relative;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.grid_2-private{
+    display: grid;
+    grid-template-columns: 3fr 2fr;
+    box-sizing: border-box;
+    grid-gap: 20px;
+    height: calc(100vh - 160px) !important;
+    padding: 0;
+
+}
+
+.test_container {
+    height: calc(100vh - 160px);
+    position: relative;
+}
+
+.test{
+    position: relative;
+    height: auto;
+    width: 600px;
+    margin: auto;
+}
+
+.kast {
+    position: absolute;
+    left: 50%;
+    -ms-transform: translatex(-50%);
+    transform: translatex(-50%);
+    z-index: -2;
+    margin: 0 auto;
+    width:600px;
+    right: 0;
+}
+
+.space_slider {
+    padding: 10px 10px;
+}
+
+.siema img {
+    width: 100%;
+    height: 235px;
+}
+
+.siema {
+    margin: 9em auto 0;
+    width: 580px;
+}
+
+.buttons {
+    margin-top: 20%;
+}
+
+.gradient_btn {
+    background-image: -webkit-gradient(linear, left top, right top, from(#751875), to(#dd0568));
+    background-image: linear-gradient(to right, #751875 0%, #dd0568 100%);
+    margin: 3% 0;
+    padding: 10px;
+    text-align: center;
+    font-family: 'Sniglet', cursive;
+    font-size: 14px;
+    text-transform: uppercase;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+    color: #FFF;
+    border-radius: 5px;
+    cursor: pointer;
+    display: inline-block;
+    text-decoration: none;
+    width: 100%;
+}
+
+.slides_private {
+    cursor: pointer;
+    position: absolute;
+    top: 40%;
+    padding: 15px;
+    color: #751875;
+    font-weight: bold;
+    font-size: 28px;
+    -webkit-transition: 0.6s ease;
+    transition: 0.6s ease;
+    border-radius: 0 3px 3px 0;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    z-index: 0;
+}
+
+.next {
+    right: 0;
+    border-radius: 3px 0 0 3px;
+}
+
+.prev {
+    left: 0;
+    border-radius: 3px 0 0 3px;
+    margin-left: auto;
+}
+
+
+
+* {
+    box-sizing: border-box;
+}
+
+.avatar_section {
+    background: linear-gradient(#427AC8, #3ADBBC);
+    height: 450px;
+    position: relative;
+    width: 300px;
+    margin: 0 auto 3% auto;
+}
+
+.avatar_section #avatar {
+    height: 450px;
+    position: absolute;
+    left: 65px;
+}
+
+.avatar_section #avatar.avatar-merel{
+    top: 10px;
+    height: 434px;
+    position: absolute;
+    left: 66px;
+
+}
+.avatar_section #avatar.avatar-julia {
+    top: 12px;
+    height: 435px;
+    position: absolute;
+    left: 67px;
+}
+.avatar_section .kleren.custom_made-t-shirt {
+    /*background: #DD0568;*/
+    position: absolute;
+    display: block;
+    height: 121px;
+    left: 96px;
+    top: 183px;
+}
+
+.avatar_section .kleren.custom_made-jurk{
+    /*background: #DD0568;*/
+    position: absolute;
+    display: none;
+    height: 113px;
+    left: 102px;
+    top: 214px;
+}
+
+.avatar_section .kleren.custom_made-jas {
+    /*background: #DD0568;*/
+    position: absolute;
+    display: none;
+    height: 150px;
+    left: 82px;
+    top: 200px;
+}
+
+.avatar_section .kleren.custom_made-skirt {
+    /*background: #DD0568;*/
+    position: absolute;
+    display: block;
+    height: 61px;
+    left: 111px;
+    top: 292px;
+}
+
+
+
+.avatar_section-buttons {
+    text-align: center;
+    margin: auto;
+
+}
+
+/*Button Avatar kiezen*/
+#k1, #avatar_save-btn {
+    font-family: 'Sniglet';
+    font-size: 14px;
+    color: white;
+    border-radius: 24.5px;
+    border: none;
+    width: 190px;
+    height: 35px;
+    background-image: linear-gradient(to right, #483AD0, #3ADBBC);
+}
+
+/*Modaal venster*/
+#inhoud1 {
+    display: flex;
+}
+
+#inhoud1 > div {
+    flex: 0 1 auto;
+}
+
+#inhoud1 > section {
+    flex: 1 1 70%;
+    padding: 1em;
+}
+
+.modaal-venster {
+    display: block;
+    width: 80%;
+    background-color: lightpink;
+    padding: 1em;
+    margin-top: 80px;
+    height: 550px;
+    box-sizing: border-box;
+    position: absolute;
+}
+
+.sluitknop {
+    font-size: 2.5em;
+    position: absolute;
+    top: .5em;
+    right: .5em;
+    cursor: pointer;
+}
+
+/*Modaal venster avatar kiezen*/
+
+/*links*/
+.avatar_title {
+    font-family: 'Sniglet';
+    font-size: 40px;
+    color: white;
+    margin-left: 123px;
+    margin-top: 40px;
+}
+
+.julia {
+    width: 105px;
+    margin-top: -63px;
+    margin-left: 131px;
+}
+
+.avatar1 {
+    width: 350px;
+    height: 519px;
+    margin-left: 30px;
+    border-radius: 42px;
+    background-image: linear-gradient(to right, #f93b21, #ffc122);
+}
+
+h2 {
+    color: white;
+    font-family: 'Open sans', sans-serif;
+    font-size: 18px;
+    margin-left: 43px;
+    margin-top: 20px;
+}
+
+#julia_btn {
+    font-family: 'Sniglet';
+    font-size: 20px;
+    color: white;
+    margin-left: 82px;
+    margin-top: 2px;
+    border-radius: 24.5px;
+    border: none;
+    width: 190px;
+    height: 40px;
+    background-image: linear-gradient(to right, #483AD0, #3ADBBC);
+}
+
+/*Midden*/
+h6 {
+    font-family: 'Sniglet';
+    font-size: 40px;
+    color: white;
+    margin-left: 112px;
+    margin-top: 40px;
+}
+
+.glorie {
+    width: 118px;
+    margin-top: -86px;
+    margin-left: 119px;
+}
+
+.avatar2 {
+    width: 350px;
+    height: 519px;
+    margin-left: 30px;
+    border-radius: 42px;
+    background-image: linear-gradient(to right, #483AD0, #3ADBBC);
+}
+
+h3 {
+    color: white;
+    font-family: 'Open sans', sans-serif;
+    font-size: 18px;
+    margin-left: 43px;
+}
+
+#glorie_btn {
+    font-family: 'Sniglet';
+    font-size: 20px;
+    color: white;
+    margin-left: 82px;
+    border-radius: 24.5px;
+    border: none;
+    width: 190px;
+    height: 40px;
+    background-image: linear-gradient(to right, #dd0568, #73187f);
+}
+
+
+.merel {
+    width: 118px;
+    margin-top: -21px;
+    margin-left: 115px;
+}
+
+.avatar3 {
+    width: 350px;
+    height: 519px;
+    margin-left: 30px;
+    border-radius: 42px;
+    background-image: linear-gradient(to right, #dd0568, #73187f);
+}
+
+h4 {
+    color: white;
+    font-family: 'Open sans', sans-serif;
+    font-size: 18px;
+    margin-left: 43px;
+}
+
+#merel-Btn {
+    font-family: 'Sniglet';
+    font-size: 20px;
+    color: white;
+    margin-left: 82px;
+    margin-top: -5px;
+    border-radius: 24.5px;
+    border: none;
+    width: 190px;
+    height: 40px;
+    background-image: linear-gradient(to right, #f93b21, #ffc122);
+}
